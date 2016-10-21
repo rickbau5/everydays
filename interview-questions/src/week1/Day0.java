@@ -6,7 +6,7 @@ import java.util.HashSet;
 /**
  * Created by Rick on 10/21/16.
  */
-public class Day1 {
+public class Day0 {
     public static void main(String[] args) {
         System.out.println("--- Uniqueness ---");
         checkUnique("");

@@ -12,6 +12,11 @@ public class Day01 {
         checkPerm("abc", "bac");
         checkPerm("abb", "bac");
         checkPerm("flibbity flab!", "flib flabbity!");
+
+        System.out.println("---- URLify ----");
+        doURLify("Mr John Smith    ");
+        doURLify("Mr  JohnSmith    ");
+        doURLify("http://www.google.com/?q=what is this thing      ");
     }
 
     /* 1.2 Given two strings, write method to decide if one is permutation of the other. */
@@ -77,5 +82,51 @@ public class Day01 {
     static void checkPerm(String arg, String arg2) {
         System.out.printf("\"%s\" & \"%s\" ? %s\n", arg, arg2, isPerm_Sort(arg, arg2) ? "true" : "false");
         System.out.printf("\"%s\" & \"%s\" ? %s\n", arg, arg2, isPerm_Array(arg, arg2) ? "true" : "false");
+    }
+
+    /* 1.3 URLify: Write a method to replace each space with a %20
+     *  "Mr John Smith    "
+     *  "Mr%20John%20Smith"                                         */
+
+    /**
+     * Traverse the string replacing spaces with %20. It is given that the
+     * string will have enough space in for this trailing the last letter.
+     *
+     * O(n), where n is the length of the string
+     *
+     * @param string the string
+     * @return new string with spaces replaced with %20
+     */
+    static String urlify(String string) {
+        char[] array = string.toCharArray();
+
+        int right = array.length - 1;
+        boolean flag = false;
+        for (int i = right; i >= 0; i--) {
+            if (!flag) {
+                flag = array[i] != ' ';
+                if (flag) {
+                    array[right] = array[i];
+                    right--;
+                }
+                continue;
+            }
+            char val = array[i];
+            if (val == ' ') {
+                array[right]     = '0';
+                array[right - 1] = '2';
+                array[right - 2] = '%';
+                right -= 3;
+            } else {
+                array[right] = array[i];
+                right--;
+            }
+        }
+
+        return new String(array);
+    }
+
+    static void doURLify(String arg) {
+        System.out.printf("\"%s\" -> \"%s\"\n", arg, urlify(arg));
     }
 }

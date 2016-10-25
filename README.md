@@ -11,5 +11,6 @@ The main point of this is to keep myself coding everyday, but also have a way to
 
 # Log
 - Week 1:
-  - [Day 0](interview-questions/src/week1/Day0.java): (CCI) String uniqueness
+  - [Day 00](interview-questions/src/week1/Day00.java): (CCI) String uniqueness
+  - [Day 01](interview-questions/src/week1/Day01.java): (CCI) String permutation checker and URLifier
 

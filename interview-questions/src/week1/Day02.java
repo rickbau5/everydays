@@ -6,29 +6,34 @@ package week1;
 public class Day02 {
     public static void main(String[] args) {
         System.out.println("---- Permutation of Palindrome ----");
-        checkPermutation("aabbc");
-        checkPermutation("aabb");
-        checkPermutation("aabbcc");
-        checkPermutation("aabbccdc");
+        checkPermutation("aabbc");                  // true
+        checkPermutation("aabb");                   // true
+        checkPermutation("aabbcc");                 // true
+        checkPermutation("aabbccdc");               // false
 
         System.out.println("---- One Edit Away ----");
-        checkOneEditAway("dog", "dog");
-        checkOneEditAway("dog", "dod");
-        checkOneEditAway("dog", "god");
-        checkOneEditAway("chicken", "thicken");
-        checkOneEditAway("thicken", "thicket");
-        checkOneEditAway("thikket", "thicket");
-        checkOneEditAway("dog", "do");
-        checkOneEditAway("do", "dog");
-        checkOneEditAway("dog", "og");
-        checkOneEditAway("dog", "dg");
-        checkOneEditAway("rabbit", "rabit");
-        checkOneEditAway("rabit", "racist");
+        checkOneEditAway("dog", "dog");             // true
+        checkOneEditAway("dog", "dod");             // true
+        checkOneEditAway("dog", "god");             // false
+        checkOneEditAway("chicken", "thicken");     // true
+        checkOneEditAway("thicken", "thicket");     // true
+        checkOneEditAway("thikket", "thicket");     // true
+        checkOneEditAway("dog", "do");              // true
+        checkOneEditAway("do", "dog");              // true
+        checkOneEditAway("dog", "og");              // true
+        checkOneEditAway("dog", "dg");              // true
+        checkOneEditAway("rabbit", "rabit");        // true
+        checkOneEditAway("rabit", "racist");        // false
 
-        checkOneEditAway("pale", "ple");
-        checkOneEditAway("pales", "pale");
-        checkOneEditAway("pale", "bale");
-        checkOneEditAway("pale", "bake");
+        checkOneEditAway("pale", "ple");            // true
+        checkOneEditAway("pales", "pale");          // true
+        checkOneEditAway("pale", "bale");           // true
+        checkOneEditAway("pale", "bake");           // false
+
+        System.out.println("---- String Compression ----");
+        doCompression("aabcccccaaa");               // a2b1c5a3
+        doCompression("aabbb");                     // a2b3
+        doCompression("rrrruurruggggbbbiiiiiiiiiiiiiiiiiiiiiiiiiiiliiiiiiicool");   //r4u242u1g4b3i27l1i7c1o2l1
     }
 
     /* 1.4 Palindrome Permutation: Given a string, see if it is a permutation of a palindrome.  *
@@ -154,5 +159,60 @@ public class Day02 {
 
     static void checkOneEditAway(String first, String second) {
         System.out.printf("'%s' & '%s' -> %s\n", first, second, isOneEditAway(first, second) ? "true" : "false");
+    }
+
+    /* 1.6 String Compression: Use the counts of repeated characters to perform compression on strings
+                               consisting of a-z. If it is not strictly smaller than the original,
+                               return the original.
+    */
+
+    /**
+     * Compress a string, replacing repeating characters with the number of repeats.
+     *
+     * O(n), where n is length of the string.
+     *
+     * @param string the string to compress, containing only a-z
+     * @return Either:
+     *          1) a new string where repeating chars are replaced with the char and the number of repeats
+     *          2) the original string, if it couldn't be compressed to a shorter string
+     */
+    // aabcccccaaa -> a2b1c5a3
+    static String compress(String string) {
+        if (string.length() < 3) {
+            return string;
+        }
+
+        StringBuilder buffer = new StringBuilder();
+        buffer.append(string.charAt(0));
+        int frontChar = 0;
+        int count = 1;
+        for (int i = 1; i < string.length(); i++) {
+            if (string.charAt(i) == buffer.charAt(frontChar)) {
+                count++;
+            } else {
+                // count the number of characters required for the shift, i.e 27 takes two
+                int before = buffer.length();
+                buffer.append(count);
+                buffer.append(string.charAt(i));
+                int diff = buffer.length() - before;
+                count = 1;
+                frontChar += diff;  // increment by one (new char) + length of number in characters
+
+                // if it's already too long, give up. Can't compress it!
+                if (buffer.length() >= string.length())
+                    return string;
+            }
+        }
+        buffer.append(count);
+
+        // Checks if the last addition would role it over: aaab -> a3b_ -> a3b1! return original
+        if (buffer.length() >= string.length())
+            return string;
+
+        return buffer.toString();
+    }
+
+    static void doCompression(String arg) {
+        System.out.printf("'%s' -> '%s'\n", arg, compress(arg));
     }
 }

@@ -14,3 +14,4 @@ The main point of this is to keep myself coding everyday, but also have a way to
   - [Day 00](interview-questions/src/week1/Day00.java): (CCI) String uniqueness
   - [Day 01](interview-questions/src/week1/Day01.java): (CCI) String permutation checker and URLifier
   - [Day 02](interview-questions/src/week1/Day02.java): (CCI) Permutation of palindrome, one edit away, and string compression
+  - [Day 03](other-projects/Day03/): (Other) Find the optimal layout of n points in a circle using an evolutionary algorithm

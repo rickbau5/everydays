@@ -31,8 +31,8 @@ public class Day04 {
      *                  entire row and column are set to 0                                      */
 
     /**
-     * Expands all zeroes to take up their entire row and column. This operations is in place, however
-     * it's overall efficiency isn't so great.
+     * Expands all zeroes to take up their entire row and column. This operation is in place, however
+     * its overall efficiency isn't so great.
      *
      * O((n*m) + (n-1)^2 + (m-1)^2 + n + m) = O((n-1)^2 + (m-1)^2)
      *

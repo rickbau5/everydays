@@ -32,4 +32,11 @@ public class Node<T> {
             next.foreach(action);
         }
     }
+
+    public void foreachNode(Consumer<? super Node<T>> action) {
+        action.accept(this);
+        if (next != null) {
+            next.foreachNode(action);
+        }
+    }
 }

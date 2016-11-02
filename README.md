@@ -16,4 +16,6 @@ The main point of this is to keep myself coding everyday, but also have a way to
   - [Day 02](interview-questions/src/week1/Day02.java): (CCI) Permutation of palindrome, one edit away, and string compression
   - [Day 03](other-projects/Day03/): (Other) Find the optimal layout of n points in a circle using an evolutionary algorithm
   - [Day 04](interview-questions/src/week1/Day04.java): (CCI) Zero a matrix and check for string rotations
+- Week 2:
   - [Day 06](interview-questions/src/week2/Day06.java): (CCI) Remove duplicates from a linked list
+  - [Day 07](interview-questions/src/week2/Day07.java): (CCI) Find kth to the last element and delete a node from a list

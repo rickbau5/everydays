@@ -20,3 +20,4 @@ The main point of this is to keep myself coding everyday, but also have a way to
   - [Day 06](interview-questions/src/week2/Day06.java): (CCI) Remove duplicates from a linked list
   - [Day 07](interview-questions/src/week2/Day07.java): (CCI) Find kth to the last element and delete a node from a list
   - [Day 08](interview-questions/src/week2/Day08.java): (CCI) Partitioning a list around a value.
+  - [Day 09](interview-questions/src/week2/Day09.java): (CCI) Sum lists
